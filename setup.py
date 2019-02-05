@@ -6,7 +6,7 @@ def writeHadoopConfigFile(name,xml):
     f.write(xml)
     f.close()
 
-mf = open("/mapreduce-test/master","r")
+mf = open("/mapreduce-test/manager","r")
 mip = mf.read().strip()
 mf.close()
 
@@ -49,13 +49,13 @@ yarnSiteXml = """<?xml version="1.0" encoding="UTF-8"?>
       <name>yarn.resourcemanager.webapp.address</name>
       <value>0.0.0.0:8088</value>
    </property>
-   <property>  
-      <name>mapreduce.jobhistory.address</name>  
-      <value>%(mip)s:10020</value>  
-   </property>  
-   <property>  
-      <name>mapreduce.jobhistory.webapp.address</name>  
-      <value>0.0.0.0:19888</value>  
+   <property>
+      <name>mapreduce.jobhistory.address</name>
+      <value>%(mip)s:10020</value>
+   </property>
+   <property>
+      <name>mapreduce.jobhistory.webapp.address</name>
+      <value>0.0.0.0:19888</value>
    </property>
 </configuration>
 """ % dict(mip=mip)
@@ -99,13 +99,13 @@ yarnSiteXml = """<?xml version="1.0" encoding="UTF-8"?>
       <name>yarn.resourcemanager.webapp.address</name>
       <value>0.0.0.0:8088</value>
    </property>
-   <property>  
-      <name>mapreduce.jobhistory.address</name>  
-      <value>%(mip)s:10020</value>  
-   </property>  
-   <property>  
-      <name>mapreduce.jobhistory.webapp.address</name>  
-      <value>0.0.0.0:19888</value>  
+   <property>
+      <name>mapreduce.jobhistory.address</name>
+      <value>%(mip)s:10020</value>
+   </property>
+   <property>
+      <name>mapreduce.jobhistory.webapp.address</name>
+      <value>0.0.0.0:19888</value>
    </property>
 <property>
 <name>yarn.resourcemanager.scheduler.class</name>
@@ -134,21 +134,21 @@ yarnSiteXml = """<?xml version="1.0" encoding="UTF-8"?>
 writeHadoopConfigFile("yarn-site-fair.xml",yarnSiteXml)
 
 fairSchedulerXml = """<?xml version="1.0"?>
-<allocations>  
-  <queue name="sample_queue">  
-    <minResources>10000 mb,0vcores</minResources>  
-    <maxResources>90000 mb,0vcores</maxResources>  
-    <maxRunningApps>50</maxRunningApps>  
-    <weight>2.0</weight>  
-    <schedulingPolicy>fair</schedulingPolicy>  
-    <queue name="sample_sub_queue">  
-      <minResources>5000 mb,0vcores</minResources>  
-    </queue>  
-  </queue>  
-  <user name="sample_user">  
-    <maxRunningApps>30</maxRunningApps>  
-  </user>  
-  <userMaxAppsDefault>5</userMaxAppsDefault>  
-</allocations>  
+<allocations>
+  <queue name="sample_queue">
+    <minResources>10000 mb,0vcores</minResources>
+    <maxResources>90000 mb,0vcores</maxResources>
+    <maxRunningApps>50</maxRunningApps>
+    <weight>2.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+    <queue name="sample_sub_queue">
+      <minResources>5000 mb,0vcores</minResources>
+    </queue>
+  </queue>
+  <user name="sample_user">
+    <maxRunningApps>30</maxRunningApps>
+  </user>
+  <userMaxAppsDefault>5</userMaxAppsDefault>
+</allocations>
 """
 writeHadoopConfigFile("fair-scheduler.xml",fairSchedulerXml)
