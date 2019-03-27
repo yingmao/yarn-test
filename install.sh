@@ -16,7 +16,7 @@ done
 
 rm -rf HiBench
 git clone https://github.com/intel-hadoop/HiBench
-master=$(cat /mapreduce-test/manager)
+manager=$(cat /mapreduce-test/manager)
 cp hibench.conf HiBench/conf/
 cp hadoop.conf HiBench/conf/
-sed -i "s/node-0/$master/g" HiBench/conf/hadoop.conf
+sed -i "s/node-0/$manager/g" HiBench/conf/hadoop.conf
